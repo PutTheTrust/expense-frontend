@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { routes } from "../constants";
 
@@ -17,9 +18,9 @@ const Sidebar = () => {
             } flex gap-4 items-center relative`}
           >
             {route.icon}
-            <a className="text-xl" href={route.href}>
+            <Link className="text-xl" to={route.href}>
               {route.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

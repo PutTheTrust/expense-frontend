@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { routes } from "../constants";
 
 const MobileNav = () => {
@@ -9,7 +10,7 @@ const MobileNav = () => {
             key={route.label}
             className={`${route.active ? "text-active" : "text-white"}`}
           >
-            <a href={route.href}>{route.icon}</a>
+            <Link to={route.href}>{route.icon}</Link>
           </li>
         ))}
       </ul>

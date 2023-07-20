@@ -6,6 +6,7 @@ export default {
       colors: {
         dark: "#151516",
         active: "#E35933",
+        "custom-green": "#17D382",
       },
     },
   },

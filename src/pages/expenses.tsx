@@ -1,9 +1,27 @@
+import { useEffect, useState } from "react";
 import Button from "../components/button";
 import Card from "../components/card";
 import MobileNav from "../components/mobile-nav";
 import Sidebar from "../components/sidebar";
+import axios from "axios";
 
 const Expenses = () => {
+  const [expenses, setExpenses] = useState([]);
+
+  useEffect(() => {
+    const getExpenses = async () => {
+      let res = await axios.get("http://localhost:3000/api/v1/expenses", {
+        headers: { "Access-Control-Allow-Origin": "*" },
+        data: {
+          userId: "64b8c14935ef2e83200681bb",
+        },
+      });
+      console.log(res.data);
+    };
+    getExpenses();
+    // console.log(exp);
+    // 64b8c14935ef2e83200681bb
+  }, []);
   return (
     <div>
       <Sidebar />

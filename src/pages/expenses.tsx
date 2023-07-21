@@ -116,7 +116,7 @@ const Expenses = () => {
           {/* <Button text="Add Expense" onclick={() => {}} /> */}
           <Dialog>
             <DialogTrigger className="bg-custom-green rounded-full h-[44px] px-[5%] text-white">
-              Open
+              Add Expense
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>

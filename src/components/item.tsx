@@ -1,5 +1,5 @@
 interface ItemProps {
-  text: string;
+  text: string | number;
   icon: any; // look for icon type
 }
 

@@ -1,12 +1,4 @@
 import * as z from "zod";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "../components/ui/dialog";
 import { useForm } from "react-hook-form";
 
 import {
@@ -20,9 +12,9 @@ import {
 } from "../components/ui/form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
+import { useLoginUserMutation } from "../apis/auth-api";
 
 const formSchema = z.object({
   email: z.string().min(3).max(50),
@@ -37,22 +29,22 @@ const Login = () => {
       password: "Password",
     },
   });
+  const [loginUser] = useLoginUserMutation();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
-      await axios.post("http://localhost:3000/api/v1/auth/login", {
-        data: {
-          email: values.email,
-          password: values.password,
-        },
+      // Error handling
+      const response = await loginUser({
+        email: values.email,
+        password: values.password,
       });
+      localStorage.setItem("token", response.data.token);
     }
-    // console.log(values);
   };
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">
-      <h1 className="text-3xl font-semibold tracking-widest">LOGIN</h1>
+      <h1 className="text-3xl font-semibold tracking-widest">Login</h1>
       <div className="w-[80%] max-w-[500px] bg-dark p-8 rounded-lg">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">

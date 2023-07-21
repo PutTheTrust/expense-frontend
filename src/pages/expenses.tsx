@@ -62,8 +62,6 @@ const Expenses = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     if (values) {
       await axios.post("http://localhost:3000/api/v1/expenses", {
         data: {
@@ -75,14 +73,6 @@ const Expenses = () => {
         },
       });
     }
-
-    //   {
-    //     "name": "Burger King",
-    //     "price": 49,
-    //     "category": "Entertainment",
-    //     "description": "Watch anime movies, series online",
-    //     "userId": "64b8c14935ef2e83200681bb"
-    // }
   };
 
   useEffect(() => {
@@ -98,7 +88,6 @@ const Expenses = () => {
       setExpenses(res.data.data.expenses);
     };
     getExpenses();
-    // console.log(exp);
     // 64b8c14935ef2e83200681bb
     setIsLoading(false);
   }, []);
@@ -113,7 +102,6 @@ const Expenses = () => {
       <div className="md:ml-[306px] mx-4">
         <div className="flex items-center justify-between mt-4">
           <h1 className="font-bold text-xl md:text-4xl">EXPENSES</h1>
-          {/* <Button text="Add Expense" onclick={() => {}} /> */}
           <Dialog>
             <DialogTrigger className="bg-custom-green rounded-full h-[44px] px-[5%] text-white">
               Add Expense
@@ -209,6 +197,3 @@ const Expenses = () => {
 };
 
 export default Expenses;
-
-{
-}

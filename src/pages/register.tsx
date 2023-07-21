@@ -1,12 +1,4 @@
 import * as z from "zod";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "../components/ui/dialog";
 import { useForm } from "react-hook-form";
 
 import {
@@ -20,9 +12,9 @@ import {
 } from "../components/ui/form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
+import { useRegisterUserMutation } from "../apis/auth-api";
 
 const formSchema = z.object({
   email: z.string().min(3).max(50),
@@ -37,17 +29,17 @@ const Register = () => {
       password: "Password",
     },
   });
+  const [registerUser] = useRegisterUserMutation();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
-      await axios.post("http://localhost:3000/api/v1/auth/signup", {
-        data: {
-          email: values.email,
-          password: values.password,
-        },
+      // Error handling
+      const response = await registerUser({
+        email: values.email,
+        password: values.password,
       });
+      localStorage.setItem("token", response.data.token);
     }
-    // console.log(values);
   };
 
   return (

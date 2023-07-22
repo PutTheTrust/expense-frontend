@@ -30,6 +30,7 @@ import {
 
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
+import { useGetExpensesQuery } from "../apis/expense-api";
 
 interface ExpenseProps {
   _id: string;
@@ -49,7 +50,10 @@ const formSchema = z.object({
 
 const Expenses = () => {
   const [expenses, setExpenses] = useState<any>();
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [loginUser] = useLoginUserMutation();
+  // const [createExpense] = useCreateExpenseMutation();
+  const { data, isLoading } = useGetExpensesQuery("64b8c14935ef2e83200681bb");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -75,22 +79,31 @@ const Expenses = () => {
     }
   };
 
-  useEffect(() => {
-    setIsLoading(true);
-    const getExpenses = async () => {
-      let res = await axios.get(
-        "http://localhost:3000/api/v1/expenses/64b8c14935ef2e83200681bb",
-        {
-          headers: { "Access-Control-Allow-Origin": "*" },
-        }
-      );
-      console.log(res.data.data.expenses);
-      setExpenses(res.data.data.expenses);
-    };
-    getExpenses();
-    // 64b8c14935ef2e83200681bb
-    setIsLoading(false);
-  }, []);
+  // useEffect(() => {
+  // setIsLoading(true);
+  //   let res = await axios.get(
+  //     "http://localhost:3000/api/v1/expenses/64b8c14935ef2e83200681bb",
+  //     {
+  //       headers: { "Access-Control-Allow-Origin": "*" },
+  //     }
+  //   );
+  //   console.log(res.data.data.expenses);
+  //   setExpenses(res.data.data.expenses);
+  // };
+  // getExpenses();
+  // const populateExpenses = async () => {
+  // data();
+  //   console.log(res);
+  // };
+  // populateExpenses()
+
+  // setExpenses(res);
+  // setExpenses()
+
+  // 64b8c14935ef2e83200681bb
+
+  // setIsLoading(false);
+  // }, []);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -180,7 +193,7 @@ const Expenses = () => {
           </Dialog>
         </div>
         <div className="grid items-center md:grid-cols-2 xl:grid-cols-3 gap-4">
-          {expenses?.map((expense: ExpenseProps) => (
+          {data.data.expenses.map((expense: ExpenseProps) => (
             <Card
               key={expense._id}
               title={expense.name}

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { routes } from "../constants";
 
@@ -11,16 +11,21 @@ const Sidebar = () => {
 
       <ul className="mx-6 mt-6 space-y-8">
         {routes.map((route) => (
-          <li
-            key={route.label}
-            className={`${
-              route.active ? "text-active active-link" : "text-white"
-            } flex gap-4 items-center relative`}
-          >
+          <li key={route.label} className="flex gap-4 items-center relative">
             {route.icon}
-            <Link className="text-xl" to={route.href}>
+
+            <NavLink
+              to={route.href}
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "pending"
+                  : isActive
+                  ? "text-active active-link"
+                  : "text-white"
+              }
+            >
               {route.label}
-            </Link>
+            </NavLink>
           </li>
         ))}
       </ul>

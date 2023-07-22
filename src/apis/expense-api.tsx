@@ -12,8 +12,20 @@ const expensesApi = createApi({
         url: `expenses/${userId}`,
       }),
     }),
+
+    createExpense: builder.mutation({
+      query: (data) => ({
+        url: "expenses",
+        method: "POST",
+        body: data,
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }),
+      invalidatesTags: ["Expenses"],
+    }),
   }),
 });
 
-export const { useGetExpensesQuery } = expensesApi;
+export const { useGetExpensesQuery, useCreateExpenseMutation } = expensesApi;
 export default expensesApi;

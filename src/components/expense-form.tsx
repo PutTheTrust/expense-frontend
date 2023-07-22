@@ -1,11 +1,9 @@
-import axios from "axios";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Dialog,
   DialogContent,
   DialogTrigger,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "../components/ui/dialog";
@@ -14,7 +12,6 @@ import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -23,6 +20,7 @@ import {
 
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
+import { useCreateExpenseMutation } from "../apis/expense-api";
 
 const formSchema = z.object({
   name: z.string().min(3).max(50),
@@ -32,26 +30,25 @@ const formSchema = z.object({
 });
 
 const ExpenseForm = () => {
+  const [createExpense] = useCreateExpenseMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "fdfddsdsdsdsddsd",
+      name: "Test",
       price: "500",
-      category: "dfdfdsdsdsdddsdsf",
-      description: "dfddsdsdsdsddsf",
+      category: "Entertainment",
+      description: "Description",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
-      await axios.post("http://localhost:3000/api/v1/expenses", {
-        data: {
-          name: values.name,
-          price: values.price,
-          category: values.category,
-          description: values.description,
-          userId: "64b8c14935ef2e83200681bb",
-        },
+      createExpense({
+        name: values.name,
+        price: values.price,
+        category: values.category,
+        description: values.description,
+        userId: "64b8c14935ef2e83200681bb",
       });
     }
   };

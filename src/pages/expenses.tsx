@@ -19,9 +19,9 @@ interface ExpenseProps {
 const Expenses = () => {
   const { data, isLoading } = useGetExpensesQuery("64b8c14935ef2e83200681bb");
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  // if (isLoading) {
+  //   return <p>Loading...</p>;
+  // }
   return (
     <div>
       <Sidebar />
@@ -32,16 +32,20 @@ const Expenses = () => {
           <ExpenseForm />
         </div>
         <div className="grid items-center md:grid-cols-2 xl:grid-cols-3 gap-4">
-          {data.data.expenses.map((expense: ExpenseProps) => (
-            <Card
-              key={expense._id}
-              title={expense.name}
-              date={moment(expense.date).format("MMMM Do YYYY")}
-              price={expense.price}
-              category={expense.category}
-              description={expense.description}
-            />
-          ))}
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            data.data.expenses.map((expense: ExpenseProps) => (
+              <Card
+                key={expense._id}
+                title={expense.name}
+                date={moment(expense.date).format("MMMM Do YYYY")}
+                price={expense.price}
+                category={expense.category}
+                description={expense.description}
+              />
+            ))
+          )}
         </div>
       </div>
     </div>

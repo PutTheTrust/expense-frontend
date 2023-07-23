@@ -3,7 +3,7 @@ import { useGetLoansQuery } from "../apis/loan-api";
 import MobileNav from "../components/mobile-nav";
 import Sidebar from "../components/sidebar";
 import { Button } from "../components/ui/button";
-import ExpenseForm from "../components/expense-form";
+import LoanForm from "../components/loan-form";
 
 const Loans = () => {
   const { data, isLoading } = useGetLoansQuery("64b8c14935ef2e83200681bb");
@@ -16,7 +16,7 @@ const Loans = () => {
       <div className="md:ml-[300px]">
         <div className="flex items-center justify-between pt-4 text-white">
           <h1 className="font-bold text-xl md:text-4xl">Loans</h1>
-          <ExpenseForm />
+          <LoanForm />
         </div>
         <div className="overflow-x-auto mt-10">
           <table className="min-w-full divide-y divide-gray-200 text-white">

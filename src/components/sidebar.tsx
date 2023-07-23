@@ -11,19 +11,18 @@ const Sidebar = () => {
 
       <ul className="mx-6 mt-6 space-y-8">
         {routes.map((route) => (
-          <li key={route.label} className="flex gap-4 items-center relative">
-            {route.icon}
-
+          <li key={route.label} className=" relative">
             <NavLink
               to={route.href}
               className={({ isActive, isPending }) =>
                 isPending
                   ? "pending"
                   : isActive
-                  ? "text-active active-link"
-                  : "text-white"
+                  ? "text-active active-link flex gap-4 items-center"
+                  : "text-white flex gap-4 items-center"
               }
             >
+              {route.icon}
               {route.label}
             </NavLink>
           </li>

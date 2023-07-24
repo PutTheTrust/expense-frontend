@@ -35,6 +35,9 @@ const Loans = () => {
                   Status
                 </th>
                 <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                  Amount
+                </th>
+                <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
                   Edit
                 </th>
                 <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
@@ -59,6 +62,9 @@ const Loans = () => {
                     </td>
                     <td className="px-6 py-4 text-sm whitespace-nowrap">
                       {loan.status}
+                    </td>
+                    <td className="px-6 py-4 text-sm whitespace-nowrap">
+                      {loan.amount}
                     </td>
                     <td className="px-6 py-4 text-sm whitespace-nowrap">
                       <Button variant="secondary">Edit</Button>

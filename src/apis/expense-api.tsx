@@ -13,6 +13,12 @@ const expensesApi = createApi({
       }),
     }),
 
+    getExpensesByCat: builder.query({
+      query: (userId) => ({
+        url: `expenses/group/${userId}`,
+      }),
+    }),
+
     createExpense: builder.mutation({
       query: (data) => ({
         url: "expenses",
@@ -27,5 +33,9 @@ const expensesApi = createApi({
   }),
 });
 
-export const { useGetExpensesQuery, useCreateExpenseMutation } = expensesApi;
+export const {
+  useGetExpensesQuery,
+  useGetExpensesByCatQuery,
+  useCreateExpenseMutation,
+} = expensesApi;
 export default expensesApi;

@@ -1,8 +1,10 @@
+import { VictoryPie } from "victory";
+import { useGetExpensesByCatQuery } from "../apis/expense-api";
 import MobileNav from "../components/mobile-nav";
 import Sidebar from "../components/sidebar";
 import { Button } from "../components/ui/button";
 
-import React, { PureComponent } from "react";
+import React, { PureComponent, useState } from "react";
 // import {
 //   BarChart,
 //   Bar,
@@ -62,84 +64,93 @@ import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
 //   },
 // ];
 
-const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
-];
+// const data = [
+//   { name: "Group A", value: 400 },
+//   { name: "Group B", value: 300 },
+//   { name: "Group C", value: 300 },
+//   { name: "Group D", value: 200 },
+// ];
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const Home = () => {
+  // let x: any = [];
+  // let y: any = [];
+  const { data, isLoading } = useGetExpensesByCatQuery(
+    "64b8c14935ef2e83200681bb"
+  );
+  if (!isLoading) {
+    console.log(data.categories);
+    // setX()
+    // data.categories.map((item: any) => x.push(item._id) y.push(item.));
+    // console.log(x);
+  }
+
   return (
     <div className="relative">
       <Sidebar />
       <MobileNav />
       <div className="md:ml-[246px] h-screen">
         <h1>Charts</h1>
-        {/* <div className="h-1/2 flex justify-between gap-5">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart width={150} height={40} data={data}>
-              <Bar dataKey="uv" fill="#00ff00" />
-              <XAxis dataKey="name" />
-              <YAxis />
-            </BarChart>
-          </ResponsiveContainer>
 
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart width={150} height={40} data={data}>
-              <Bar dataKey="uv" fill="#00ff00" />
-              <XAxis dataKey="name" />
-              <YAxis />
-            </BarChart>
-          </ResponsiveContainer>
-        </div> */}
+        <div className="flex w-full bg-red-800 justify-between gap-10">
+          <div className="flex flex-col items-center bg-slate-100 w-1/2">
+            <div className="w-1/2">
+              {isLoading ? (
+                <p>Loading</p>
+              ) : (
+                <VictoryPie
+                  data={data.categories}
+                  innerRadius={100}
+                  animate={{
+                    duration: 2000,
+                  }}
+                />
+              )}
+            </div>
 
-        <div className="flex items-center flex-col bg-slate-600 w-1/2">
-          <div className="relative">
-            <PieChart
-              // className="flex items-center justify-center relative"
-              width={300}
-              height={250}
-            >
-              <Pie
-                data={data}
-                cx={120}
-                cy={100}
-                innerRadius={60}
-                outerRadius={80}
-                fill="#8884d8"
-                paddingAngle={5}
-                dataKey="value"
-              >
-                {data.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
+            <div className="grid grid-cols-2 gap-2 w-1/2 bg-red-500">
+              {!isLoading &&
+                (data.categories.length === 0 ? (
+                  <p>NO categories yet!</p>
+                ) : (
+                  data.categories.map((cat: any, idx: number) => (
+                    <div key={idx} className="flex gap-5">
+                      <div className={`h-5 w-5 bg-[${COLORS[idx]}]`} />
+                      <p>{cat.x}</p>
+                    </div>
+                  ))
                 ))}
-              </Pie>
-            </PieChart>
+            </div>
           </div>
-          <p className="absoulte inset-0">R5000</p>
 
-          <div className="grid grid-cols-2 gap-2">
-            <div className="flex gap-5">
-              <div className="h-5 w-5 bg-[#0088FE]" />
-              <p>Entertainment</p>
+          <div className="flex flex-col items-center bg-slate-100 w-1/2">
+            <div className="w-1/2">
+              {isLoading ? (
+                <p>Loading</p>
+              ) : (
+                <VictoryPie
+                  data={data.categories}
+                  innerRadius={100}
+                  animate={{
+                    duration: 2000,
+                  }}
+                />
+              )}
             </div>
-            <div className="flex gap-5">
-              <div className="h-5 w-5 bg-[#00C49F]" />
-              <p>Shopping</p>
-            </div>
-            <div className="flex gap-5">
-              <div className="h-5 w-5 bg-[#FFBB28]" />
-              <p>Gym</p>
-            </div>
-            <div className="flex gap-5">
-              <div className="h-5 w-5 bg-[#FF8042]" />
-              <p>Food</p>
+
+            <div className="grid grid-cols-2 gap-2 w-1/2 bg-red-500">
+              {!isLoading &&
+                (data.categories.length === 0 ? (
+                  <p>NO categories yet!</p>
+                ) : (
+                  data.categories.map((cat: any, idx: number) => (
+                    <div key={idx} className="flex gap-5">
+                      <div className={`h-5 w-5 bg-[${COLORS[idx]}]`} />
+                      <p>{cat.x}</p>
+                    </div>
+                  ))
+                ))}
             </div>
           </div>
         </div>

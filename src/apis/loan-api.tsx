@@ -13,6 +13,12 @@ const loansApi = createApi({
       }),
     }),
 
+    getLoansByPerson: builder.query({
+      query: (userId) => ({
+        url: `loans/group/${userId}`,
+      }),
+    }),
+
     createLoan: builder.mutation({
       query: (data) => ({
         url: "loans",
@@ -27,5 +33,9 @@ const loansApi = createApi({
   }),
 });
 
-export const { useGetLoansQuery, useCreateLoanMutation } = loansApi;
+export const {
+  useGetLoansQuery,
+  useGetLoansByPersonQuery,
+  useCreateLoanMutation,
+} = loansApi;
 export default loansApi;

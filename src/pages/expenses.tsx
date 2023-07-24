@@ -23,15 +23,15 @@ const Expenses = () => {
   //   return <p>Loading...</p>;
   // }
   return (
-    <div>
+    <div className="bg-dark-bg">
       <Sidebar />
       <MobileNav />
-      <div className="md:ml-[306px] mx-4">
-        <div className="flex items-center justify-between mt-4">
+      <div className="md:ml-[306px] mx-4 text-white">
+        <div className="flex items-center justify-between pt-4">
           <h1 className="font-bold text-xl md:text-4xl">EXPENSES</h1>
           <ExpenseForm />
         </div>
-        <div className="grid items-center md:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div className="grid items-center justify-center md:grid-cols-2 xl:grid-cols-3 gap-4">
           {isLoading ? (
             <p>Loading...</p>
           ) : (

@@ -34,7 +34,7 @@ const LoanChart = () => {
               <div key={idx} className="flex gap-5">
                 {/* <div className={`h-5 w-5 bg-[${COLORS[idx]}]`} /> */}
                 <p>
-                  {cat.x} - {cat.y}
+                  {cat.x} - R{cat.y}
                 </p>
               </div>
             ))

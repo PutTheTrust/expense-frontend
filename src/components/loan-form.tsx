@@ -27,9 +27,18 @@ const formSchema = z.object({
   borrowDate: z.string(),
   due: z.string().min(3).max(50),
   status: z.string().min(4).max(50),
+  amount: z.string().min(1),
 });
 
-const LoanForm = () => {
+interface LoanProps {
+  text: string;
+  data?: any;
+}
+
+const LoanForm: React.FC<LoanProps> = ({ text, data }) => {
+  if (data) {
+    console.log(data);
+  }
   const [createLoan] = useCreateLoanMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -39,6 +48,7 @@ const LoanForm = () => {
       borrowDate: "",
       due: "",
       status: "Unpaid",
+      amount: "",
     },
   });
 
@@ -49,6 +59,7 @@ const LoanForm = () => {
         borrowDate: values.borrowDate,
         due: values.due,
         status: values.status,
+        amount: values.amount,
         userId: "64b8c14935ef2e83200681bb",
       });
     }
@@ -56,11 +67,11 @@ const LoanForm = () => {
   return (
     <Dialog>
       <DialogTrigger className="bg-custom-green rounded-full h-[44px] px-[5%] text-white">
-        Add Loan
+        {text}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Add Expense</DialogTitle>
+          <DialogTitle>{text}</DialogTitle>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <FormField
@@ -99,6 +110,20 @@ const LoanForm = () => {
                     <FormLabel>Due Date</FormLabel>
                     <FormControl>
                       <Input type="date" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="amount"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Amount</FormLabel>
+                    <FormControl>
+                      <Input type="number" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

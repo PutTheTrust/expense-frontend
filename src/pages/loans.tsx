@@ -2,7 +2,6 @@ import moment from "moment";
 import { useGetLoansQuery } from "../apis/loan-api";
 import MobileNav from "../components/mobile-nav";
 import Sidebar from "../components/sidebar";
-import { Button } from "../components/ui/button";
 import LoanForm from "../components/loan-form";
 import DeleteButton from "../components/delete-button";
 
@@ -17,7 +16,7 @@ const Loans = () => {
       <div className="md:ml-[300px]">
         <div className="flex items-center justify-between pt-4 text-white">
           <h1 className="font-bold text-xl md:text-4xl">Loans</h1>
-          <LoanForm />
+          <LoanForm text="Add Loan" />
         </div>
         <div className="overflow-x-auto mt-10">
           <table className="min-w-full divide-y divide-gray-200 text-white">
@@ -38,9 +37,9 @@ const Loans = () => {
                 <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
                   Amount
                 </th>
-                <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                {/* <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
                   Edit
-                </th>
+                </th> */}
                 <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
                   Delete
                 </th>
@@ -51,7 +50,7 @@ const Loans = () => {
                 <p>Loading...</p>
               ) : (
                 data.data.loans.map((loan: any) => (
-                  <tr>
+                  <tr key={loan._id}>
                     <td className="px-6 py-4 text-sm whitespace-nowrap">
                       {loan.lender}
                     </td>
@@ -67,9 +66,9 @@ const Loans = () => {
                     <td className="px-6 py-4 text-sm whitespace-nowrap">
                       {loan.amount}
                     </td>
-                    <td className="px-6 py-4 text-sm whitespace-nowrap">
-                      <Button variant="secondary">Edit {loan._id}</Button>
-                    </td>
+                    {/* <td className="px-6 py-4 text-sm whitespace-nowrap">
+                      <LoanForm text="Edit Loan" data={{id: loan._id, lender: loan.lender, borrow: loan.borrowDate, loan.due, loan.status, loan.amoun,}} />
+                    </td> */}
                     <td className="px-6 py-4 text-sm whitespace-nowrap">
                       <DeleteButton id={loan._id} />
                     </td>

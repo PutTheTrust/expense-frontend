@@ -17,7 +17,7 @@ const Card: React.FC<CardProps> = ({
   title,
 }) => {
   return (
-    <div className="shadow-1 px-4 pb-8 rounded-lg mt-10 max-w-[326px]">
+    <div className="shadow-1 px-4 py-8 rounded-lg mt-10 max-w-[326px]">
       <h2 className="font-semibold text-3xl text-center">{title}</h2>
 
       <div className="space-y-2 mt-8">

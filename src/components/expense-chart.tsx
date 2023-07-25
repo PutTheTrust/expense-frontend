@@ -7,7 +7,7 @@ const ExpenseChart = () => {
   );
 
   return (
-    <div className="flex flex-col items-center bg-[#5C8D7B] shadow-lg md:w-1/2">
+    <div className="flex flex-col items-center bg-white shadow-lg md:w-1/2">
       <h1 className="text-2xl mb-2 text-white">Expenses by Category</h1>
       <div className="w-[78%] md:w-1/2">
         {isLoading ? (
@@ -25,7 +25,7 @@ const ExpenseChart = () => {
         )}
       </div>
 
-      <div className="grid md:grid-cols-2 gap-2 w-full text-white px-5">
+      <div className="grid md:grid-cols-2 gap-2 w-full  px-5">
         {!isLoading &&
           (data.categories.length === 0 ? (
             <p>NO categories yet!</p>
@@ -34,7 +34,7 @@ const ExpenseChart = () => {
               <div key={idx} className="flex gap-5">
                 {/* <div className={`h-5 w-5 bg-[${COLORS[idx]}]`} /> */}
                 <p>
-                  {cat.x} {cat.y}
+                  {cat.x} R{cat.y}
                 </p>
               </div>
             ))

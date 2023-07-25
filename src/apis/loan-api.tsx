@@ -30,12 +30,25 @@ const loansApi = createApi({
       }),
       invalidatesTags: ["Loans"],
     }),
+
+    deleteLoan: builder.mutation({
+      query: (loanId: any) => ({
+        url: "loans",
+        method: "DELETE",
+        body: { loanId },
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }),
+      invalidatesTags: ["Loans"],
+    }),
   }),
 });
 
 export const {
   useGetLoansQuery,
   useGetLoansByPersonQuery,
+  useDeleteLoanMutation,
   useCreateLoanMutation,
 } = loansApi;
 export default loansApi;

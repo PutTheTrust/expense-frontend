@@ -4,6 +4,7 @@ import MobileNav from "../components/mobile-nav";
 import Sidebar from "../components/sidebar";
 import { Button } from "../components/ui/button";
 import LoanForm from "../components/loan-form";
+import DeleteButton from "../components/delete-button";
 
 const Loans = () => {
   const { data, isLoading } = useGetLoansQuery("64b8c14935ef2e83200681bb");
@@ -67,10 +68,10 @@ const Loans = () => {
                       {loan.amount}
                     </td>
                     <td className="px-6 py-4 text-sm whitespace-nowrap">
-                      <Button variant="secondary">Edit</Button>
+                      <Button variant="secondary">Edit {loan._id}</Button>
                     </td>
                     <td className="px-6 py-4 text-sm whitespace-nowrap">
-                      <Button variant="destructive">Delete</Button>
+                      <DeleteButton id={loan._id} />
                     </td>
                   </tr>
                 ))

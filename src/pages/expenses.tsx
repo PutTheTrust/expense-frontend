@@ -23,7 +23,7 @@ const Expenses = () => {
   //   return <p>Loading...</p>;
   // }
   return (
-    <div className="bg-dark-bg">
+    <div className="bg-dark-bg pb-32">
       <Sidebar />
       <MobileNav />
       <div className="md:ml-[306px] mx-4 text-white">
@@ -33,11 +33,12 @@ const Expenses = () => {
         </div>
         <div className="grid items-center justify-center md:grid-cols-2 xl:grid-cols-3 gap-4">
           {isLoading ? (
-            <p>Loading...</p>
+            <p className="h-screen">Loading...</p>
           ) : (
             data.data.expenses.map((expense: ExpenseProps) => (
               <Card
                 key={expense._id}
+                id={expense._id}
                 title={expense.name}
                 date={moment(expense.date).format("MMMM Do YYYY")}
                 price={expense.price}

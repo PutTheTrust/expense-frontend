@@ -30,6 +30,18 @@ const expensesApi = createApi({
       }),
       invalidatesTags: ["Expenses"],
     }),
+
+    deleteExpense: builder.mutation({
+      query: (expenseId: any) => ({
+        url: "expenses",
+        method: "DELETE",
+        body: { expenseId },
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }),
+      invalidatesTags: ["Expenses"],
+    }),
   }),
 });
 
@@ -37,5 +49,6 @@ export const {
   useGetExpensesQuery,
   useGetExpensesByCatQuery,
   useCreateExpenseMutation,
+  useDeleteExpenseMutation,
 } = expensesApi;
 export default expensesApi;

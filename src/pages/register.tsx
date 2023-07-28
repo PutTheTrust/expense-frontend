@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,6 +17,7 @@ import { useRegisterUserMutation } from "../apis/auth-api";
 
 const formSchema = z.object({
   email: z.string().min(3).max(50),
+  name: z.string().min(3).max(50),
   password: z.string().min(3).max(50),
 });
 
@@ -25,7 +25,8 @@ const Register = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "hiemer@atomic.boom",
+      email: "asta@clover.com",
+      name: "Asta",
       password: "Password",
     },
   });
@@ -36,6 +37,7 @@ const Register = () => {
       // Error handling
       const response = await registerUser({
         email: values.email,
+        name: values.name,
         password: values.password,
       });
       localStorage.setItem("token", response.data.token);
@@ -55,7 +57,21 @@ const Register = () => {
                 <FormItem>
                   <FormLabel className="text-white">Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="Crunchyroll" type="email" {...field} />
+                    <Input placeholder="1@2.com" type="email" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-white">Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Yami Sukehiro" type="text" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -69,7 +85,7 @@ const Register = () => {
                 <FormItem>
                   <FormLabel className="text-white">Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="49" type="password" {...field} />
+                    <Input type="password" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

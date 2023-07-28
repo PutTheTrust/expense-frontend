@@ -1,5 +1,6 @@
 import * as z from "zod";
 import { useForm } from "react-hook-form";
+import jwtDecode from "jwt-decode";
 
 import {
   Form,
@@ -25,7 +26,7 @@ const Login = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "hiemer@atomic.boom",
+      email: "asta@clover.com",
       password: "Password",
     },
   });
@@ -34,13 +35,21 @@ const Login = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
       // Error handling
-      const response = await loginUser({
+      const response: any = await loginUser({
         email: values.email,
         password: values.password,
       });
+      // const {token}
+      console.log(response);
+      const { token } = response.data;
+      const { id } = await jwtDecode(token);
+      console.log(id);
       localStorage.setItem("token", response.data.token);
     }
   };
+
+  // email: "hiemer@atomic.boom",
+  // password: "Password",
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">

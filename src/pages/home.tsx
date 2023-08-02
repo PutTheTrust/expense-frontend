@@ -3,19 +3,33 @@ import Sidebar from "../components/sidebar";
 
 import ExpenseChart from "../components/expense-chart";
 import LoanChart from "../components/loan-chart";
+import TestChart from "../components/test-chart";
+import BalanceCard from "../components/balance-card";
+import ExpenseTable from "../components/expense-table";
 
 const Home = () => {
   return (
-    <div className="relative bg-dark-bg">
+    <div className="relative h-full">
       <Sidebar />
       <MobileNav />
-      <div className="md:ml-[246px] h-screen">
-        <h1 className="px-10 text-white text-2xl tracking-widest mb-4">HOME</h1>
+      <div className="px-10 md:ml-[246px] h-screen">
+        <h1 className=" text-white text-2xl tracking-widest mb-4 md:pt-10">
+          DASHBOARD
+        </h1>
 
-        <div className="flex flex-col md:flex-row w-full justify-between gap-10 px-10">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          <BalanceCard />
+          <BalanceCard />
+          <BalanceCard />
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4 mt-4">
           <ExpenseChart />
           <LoanChart />
+          {/* <TestChart /> */}
         </div>
+
+        <ExpenseTable />
       </div>
     </div>
   );

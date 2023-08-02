@@ -7,8 +7,8 @@ const ExpenseChart = () => {
   );
 
   return (
-    <div className="flex flex-col items-center bg-white shadow-lg md:w-1/2">
-      <h1 className="text-2xl mb-2 text-white">Expenses by Category</h1>
+    <div className="flex flex-col items-center bg-[#272D35] shadow-lg rounded-[10px]">
+      <h1 className="text-2xl mb-2 text-white">Loans</h1>
       <div className="w-[78%] md:w-1/2">
         {isLoading ? (
           <p>Loading</p>
@@ -19,6 +19,7 @@ const ExpenseChart = () => {
             animate={{
               duration: 2000,
             }}
+            colorScale={"green"}
             // width={300}
             containerComponent={<VictoryContainer responsive={true} />}
           />
@@ -33,9 +34,9 @@ const ExpenseChart = () => {
             data.categories.map((cat: any, idx: number) => (
               <div key={idx} className="flex gap-5">
                 {/* <div className={`h-5 w-5 bg-[${COLORS[idx]}]`} /> */}
-                <p>
+                {/* <p>
                   {cat.x} R{cat.y}
-                </p>
+                </p> */}
               </div>
             ))
           ))}

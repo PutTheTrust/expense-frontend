@@ -16,6 +16,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { useLoginUserMutation } from "../apis/auth-api";
+import { saveUser } from "../store/slice/auth-slice";
+import { useDispatch } from "react-redux";
 
 const formSchema = z.object({
   email: z.string().min(3).max(50),
@@ -31,6 +33,7 @@ const Login = () => {
     },
   });
   const [loginUser] = useLoginUserMutation();
+  const dispatch = useDispatch();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
@@ -42,9 +45,9 @@ const Login = () => {
       // const {token}
       console.log(response);
       const { token } = response.data;
-      const { id } = await jwtDecode(token);
-      console.log(id);
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", token);
+      const user = jwtDecode(token);
+      dispatch(saveUser(user));
     }
   };
 

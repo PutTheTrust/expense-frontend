@@ -1,6 +1,7 @@
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import jwtDecode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 import {
   Form,
@@ -25,6 +26,7 @@ const formSchema = z.object({
 });
 
 const Login = () => {
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,6 +50,7 @@ const Login = () => {
       localStorage.setItem("token", token);
       const user = jwtDecode(token);
       dispatch(saveUser(user));
+      navigate("/");
     }
   };
 

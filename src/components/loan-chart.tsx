@@ -1,10 +1,10 @@
 import { VictoryPie, VictoryContainer } from "victory";
 import { useGetLoansByPersonQuery } from "../apis/loan-api";
+import { useSelector } from "react-redux";
 
 const LoanChart = () => {
-  const { data, isLoading } = useGetLoansByPersonQuery(
-    "64b8c14935ef2e83200681bb"
-  );
+  const userId = useSelector((state: any) => state.authStore.userId);
+  const { data, isLoading } = useGetLoansByPersonQuery(userId);
 
   return (
     <div className="flex flex-col items-center bg-[#272D35] text-white text-ellipsis rounded-[10px]">

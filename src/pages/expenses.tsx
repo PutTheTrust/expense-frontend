@@ -6,6 +6,7 @@ import Sidebar from "../components/sidebar";
 
 import { useGetExpensesQuery } from "../apis/expense-api";
 import ExpenseForm from "../components/expense-form";
+import { useSelector } from "react-redux";
 
 interface ExpenseProps {
   _id: string;
@@ -17,7 +18,8 @@ interface ExpenseProps {
 }
 
 const Expenses = () => {
-  const { data, isLoading } = useGetExpensesQuery("64b8c14935ef2e83200681bb");
+  const userId = useSelector((state: any) => state.authStore.userId);
+  const { data, isLoading } = useGetExpensesQuery(userId);
 
   // if (isLoading) {
   //   return <p>Loading...</p>;

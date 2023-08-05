@@ -1,10 +1,10 @@
 import { VictoryPie, VictoryContainer } from "victory";
 import { useGetExpensesByCatQuery } from "../apis/expense-api";
+import { useSelector } from "react-redux";
 
 const ExpenseChart = () => {
-  const { data, isLoading } = useGetExpensesByCatQuery(
-    "64b8c14935ef2e83200681bb"
-  );
+  const userId = useSelector((state: any) => state.authStore.userId);
+  const { data, isLoading } = useGetExpensesByCatQuery(userId);
 
   return (
     <div className="flex flex-col items-center bg-[#272D35] shadow-lg rounded-[10px]">

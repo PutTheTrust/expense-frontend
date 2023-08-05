@@ -1,8 +1,10 @@
 import moment from "moment";
 import { useGetExpensesQuery } from "../apis/expense-api";
+import { useSelector } from "react-redux";
 
 const ExpenseTable = () => {
-  const { data, isLoading } = useGetExpensesQuery("64c37070c99989afb114e6f2");
+  const userId = useSelector((state: any) => state.authStore.userId);
+  const { data, isLoading } = useGetExpensesQuery(userId);
   //   if (!isLoading) {
   //     console.log(data);
   //   }

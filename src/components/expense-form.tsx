@@ -21,6 +21,7 @@ import {
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { useCreateExpenseMutation } from "../apis/expense-api";
+import { useSelector } from "react-redux";
 
 const formSchema = z.object({
   name: z.string().min(3).max(50),
@@ -30,6 +31,7 @@ const formSchema = z.object({
 });
 
 const ExpenseForm = () => {
+  const userId = useSelector((state: any) => state.authStore.userId);
   const [createExpense] = useCreateExpenseMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -48,7 +50,7 @@ const ExpenseForm = () => {
         price: values.price,
         category: values.category,
         description: values.description,
-        userId: "64b8c14935ef2e83200681bb",
+        userId: userId,
       });
     }
   };

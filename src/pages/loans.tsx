@@ -4,9 +4,11 @@ import MobileNav from "../components/mobile-nav";
 import Sidebar from "../components/sidebar";
 import LoanForm from "../components/loan-form";
 import DeleteButton from "../components/delete-button";
+import { useSelector } from "react-redux";
 
 const Loans = () => {
-  const { data, isLoading } = useGetLoansQuery("64b8c14935ef2e83200681bb");
+  const userId = useSelector((state: any) => state.authStore.userId);
+  const { data, isLoading } = useGetLoansQuery(userId);
   // console.log(data.data);
   // console.log(data.data.loans);
   return (

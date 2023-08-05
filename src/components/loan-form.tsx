@@ -21,6 +21,7 @@ import {
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { useCreateLoanMutation } from "../apis/loan-api";
+import { useSelector } from "react-redux";
 
 const formSchema = z.object({
   lender: z.string().min(3).max(50),
@@ -36,6 +37,7 @@ interface LoanProps {
 }
 
 const LoanForm: React.FC<LoanProps> = ({ text, data }) => {
+  const userId = useSelector((state: any) => state.authStore.userId);
   if (data) {
     console.log(data);
   }
@@ -60,7 +62,7 @@ const LoanForm: React.FC<LoanProps> = ({ text, data }) => {
         due: values.due,
         status: values.status,
         amount: values.amount,
-        userId: "64b8c14935ef2e83200681bb",
+        userId: userId,
       });
     }
   };

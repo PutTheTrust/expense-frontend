@@ -4,8 +4,17 @@ import { Area } from "@antv/g2plot";
 // import { AREA_COLORS } from "../constants";
 import useFetchData from "../hooks/fetchData";
 
+const data = [
+  { type: '分类一', value: 27 },
+  { type: '分类二', value: 25 },
+  { type: '分类三', value: 18 },
+  { type: '分类四', value: 15 },
+  { type: '分类五', value: 10 },
+  { type: '其他', value: 5 },
+];
+
 const config = {
-  data: [],
+  data,
   xField: "year",
   yField: "value",
   seriesField: "category",
@@ -32,11 +41,13 @@ const G2PlotArea = () => {
   const [data] = useFetchData();
 
   useEffect(() => {
-    if (ref.current && data.length > 0) {
-      config.data = data;
-      const area = new Area(ref.current, config);
-      area.render();
-    }
+    // if (ref.current && data.length > 0) {
+    //   config.data = data;
+    //   const area = new Area(ref.current, config);
+    //   area.render();
+    // }
+    const area = new Area(ref.current, config);
+    area.render();
   }, [data]);
 
   return (

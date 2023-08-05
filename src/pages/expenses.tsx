@@ -7,6 +7,7 @@ import Sidebar from "../components/sidebar";
 import { useGetExpensesQuery } from "../apis/expense-api";
 import ExpenseForm from "../components/expense-form";
 import { useSelector } from "react-redux";
+import DeleteButton from "../components/delete-button";
 
 interface ExpenseProps {
   _id: string;
@@ -33,7 +34,7 @@ const Expenses = () => {
           <h1 className="font-bold text-xl md:text-4xl">EXPENSES</h1>
           <ExpenseForm />
         </div>
-        <div className="grid items-center justify-center md:grid-cols-2 xl:grid-cols-3 gap-4">
+        {/* <div className="grid items-center justify-center md:grid-cols-2 xl:grid-cols-3 gap-4">
           {isLoading ? (
             <p className="h-screen">Loading...</p>
           ) : (
@@ -49,6 +50,72 @@ const Expenses = () => {
               />
             ))
           )}
+        </div> */}
+        <div className="overflow-x-auto mt-10">
+          <table className="min-w-full divide-y divide-gray-200 text-white">
+            <thead className="">
+              <tr>
+                <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                  ID
+                </th>
+                <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                  Expense
+                </th>
+                <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                  Date
+                </th>
+                <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                  Price
+                </th>
+                <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                  Category
+                </th>
+                <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                  Description
+                </th>
+                {/* <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                  Edit
+                </th> */}
+                <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                  Delete
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              {isLoading ? (
+                <td>Loading...</td>
+              ) : (
+                data.data.expenses.map((expense: any) => (
+                  <tr key={expense._id}>
+                    <td className="px-6 py-4 text-sm whitespace-nowrap">
+                      {expense._id}
+                    </td>
+                    <td className="px-6 py-4 text-sm whitespace-nowrap">
+                      {expense.name}
+                    </td>
+                    <td className="px-6 py-4 text-sm whitespace-nowrap">
+                      {moment(expense.date).format("MMMM Do YYYY")}
+                    </td>
+                    <td className="px-6 py-4 text-sm whitespace-nowrap">
+                      {expense.price}
+                    </td>
+                    <td className="px-6 py-4 text-sm whitespace-nowrap">
+                      {expense.category}
+                    </td>
+                    <td className="px-6 py-4 text-sm whitespace-nowrap">
+                      {expense.description}
+                    </td>
+                    {/* <td className="px-6 py-4 text-sm whitespace-nowrap">
+                      <expenseForm text="Edit expense" data={{id: expense._id, lender: expense.lender, borrow: expense.borrowDate, expense.due, expense.status, expense.amoun,}} />
+                    </td> */}
+                    <td className="px-6 py-4 text-sm whitespace-nowrap">
+                      <DeleteButton id={expense._id} />
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

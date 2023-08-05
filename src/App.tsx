@@ -19,7 +19,7 @@ import jwtDecode from "jwt-decode";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [isLoggedIn, SetLoggedIn] = useState(false);
+  // const [isLoggedIn, SetLoggedIn] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -28,10 +28,10 @@ function App() {
     if (token) {
       const user = jwtDecode(token);
       dispatch(saveUser(user));
-      SetLoggedIn(true);
+      // SetLoggedIn(true);
     } else {
-      SetLoggedIn(false);
-      navigate("/login");
+      // SetLoggedIn(false);
+      // navigate("/login");
     }
   }, []);
 

@@ -49,7 +49,7 @@ const Loans = () => {
             </thead>
             <tbody className="divide-y divide-gray-200">
               {isLoading ? (
-                <p>Loading...</p>
+                <td>Loading...</td>
               ) : (
                 data.data.loans.map((loan: any) => (
                   <tr key={loan._id}>

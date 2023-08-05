@@ -3,7 +3,7 @@ import Sidebar from "../components/sidebar";
 
 import ExpenseChart from "../components/expense-chart";
 import LoanChart from "../components/loan-chart";
-import TestChart from "../components/test-chart";
+// import TestChart from "../components/test-chart";
 import BalanceCard from "../components/balance-card";
 import ExpenseTable from "../components/expense-table";
 import { useSelector } from "react-redux";

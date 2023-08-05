@@ -32,7 +32,7 @@ const ExpenseTable = () => {
         </thead>
         <tbody className="divide-y divide-gray-200">
           {isLoading ? (
-            <p>Loading...</p>
+            <td>Loading...</td>
           ) : (
             data.data.expenses.map((expense: any) => (
               <tr key={expense._id}>

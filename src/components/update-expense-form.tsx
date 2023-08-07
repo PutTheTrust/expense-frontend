@@ -20,11 +20,7 @@ import {
 
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import {
-  useCreateExpenseMutation,
-  useUpdateExpenseMutation,
-} from "../apis/expense-api";
-import { useSelector } from "react-redux";
+import { useUpdateExpenseMutation } from "../apis/expense-api";
 
 const formSchema = z.object({
   name: z.string().min(3).max(50),
@@ -48,7 +44,6 @@ const UpdateExpenseForm: React.FC<UpdateExpenseFormProps> = ({
   category,
   description,
 }) => {
-  //   const userId = useSelector((state: any) => state.authStore.userId);
   const [updateExpense] = useUpdateExpenseMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

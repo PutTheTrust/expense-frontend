@@ -31,13 +31,8 @@ const LoanChart = () => {
           (data.categories.length === 0 ? (
             <p>NO categories yet!</p>
           ) : (
-            data.categories.map((cat: any, idx: number) => (
-              <div key={idx} className="flex gap-5">
-                {/* <div className={`h-5 w-5 bg-[${COLORS[idx]}]`} /> */}
-                {/* <p>
-                  {cat.x} - R{cat.y}
-                </p> */}
-              </div>
+            data.categories.map((_cat: any, idx: number) => (
+              <div key={idx} className="flex gap-5"></div>
             ))
           ))}
       </div>

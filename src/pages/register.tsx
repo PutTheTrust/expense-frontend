@@ -17,7 +17,6 @@ import { useRegisterUserMutation } from "../apis/auth-api";
 import jwt from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { saveUser } from "../store/slice/auth-slice";
-// import {saveUser} from '../store/slice/auth-slice'
 
 const formSchema = z.object({
   email: z.string().min(3).max(50),
@@ -40,7 +39,7 @@ const Register = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
       // Error handling
-      const response = await registerUser({
+      const response: any = await registerUser({
         email: values.email,
         name: values.name,
         password: values.password,
@@ -48,7 +47,6 @@ const Register = () => {
       localStorage.setItem("token", response.data.token);
       const user = jwt(response.data.token);
       dispatch(saveUser(user));
-      // console.log(user);
     }
   };
 

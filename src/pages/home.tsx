@@ -3,7 +3,6 @@ import Sidebar from "../components/sidebar";
 
 import ExpenseChart from "../components/expense-chart";
 import LoanChart from "../components/loan-chart";
-// import TestChart from "../components/test-chart";
 import BalanceCard from "../components/balance-card";
 import ExpenseTable from "../components/expense-table";
 import { useSelector } from "react-redux";
@@ -35,7 +34,6 @@ const Home = () => {
         <div className="grid md:grid-cols-2 gap-4 mt-4">
           <ExpenseChart />
           <LoanChart />
-          {/* <TestChart /> */}
         </div>
 
         <ExpenseTable />

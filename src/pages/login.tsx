@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -44,7 +43,6 @@ const Login = () => {
         email: values.email,
         password: values.password,
       });
-      // const {token}
       console.log(response);
       const { token } = response.data;
       localStorage.setItem("token", token);
@@ -53,9 +51,6 @@ const Login = () => {
       navigate("/");
     }
   };
-
-  // email: "hiemer@atomic.boom",
-  // password: "Password",
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">

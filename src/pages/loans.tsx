@@ -10,8 +10,6 @@ import UpdateLoanForm from "../components/update-loan-form";
 const Loans = () => {
   const userId = useSelector((state: any) => state.authStore.userId);
   const { data, isLoading } = useGetLoansQuery(userId);
-  // console.log(data.data);
-  // console.log(data.data.loans);
   return (
     <div className="h-screen bg-dark-bg">
       <Sidebar />

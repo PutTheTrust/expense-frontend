@@ -8,9 +8,6 @@ interface ButtonProps {
 }
 
 const DeleteButton: React.FC<ButtonProps> = ({ id }) => {
-  // const { data } = useDeleteLoanMutation(id);
-  // const [trigger, { data }] = useDeleteLoanMutation.useLazyQuery();
-
   const [myState] = useState<any>(skipToken); // initialize with skipToken to skip at first
   const [trigger] = useDeleteLoanMutation(myState);
   return (

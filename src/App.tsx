@@ -31,7 +31,7 @@ function App() {
       // SetLoggedIn(true);
     } else {
       // SetLoggedIn(false);
-      // navigate("/login");
+      navigate("/login");
     }
   }, []);
 

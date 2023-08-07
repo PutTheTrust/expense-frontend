@@ -19,10 +19,4 @@ export const routes = [
     label: "Loans",
     icon: <Wallet />,
   },
-  {
-    id: 3,
-    href: "/login",
-    label: "Logout",
-    icon: <LogOut />,
-  },
 ];

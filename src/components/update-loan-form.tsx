@@ -20,53 +20,54 @@ import {
 
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import {
-  useCreateExpenseMutation,
-  useUpdateExpenseMutation,
-} from "../apis/expense-api";
-import { useSelector } from "react-redux";
+import { useUpdateLoanMutation } from "../apis/loan-api";
 
 const formSchema = z.object({
-  name: z.string().min(3).max(50),
-  price: z.string(),
-  category: z.string().min(3).max(50),
-  description: z.string().min(3).max(50),
+  lender: z.string().min(3).max(50),
+  borrowDate: z.string(),
+  due: z.string().min(3).max(50),
+  status: z.string().min(3).max(50),
+  amount: z.string(),
 });
 
-interface UpdateExpenseFormProps {
+interface UpdateLoanFormProps {
   id: string;
-  name: string;
-  price: string;
-  category: string;
-  description: string;
+  lender: string;
+  borrowDate: string;
+  due: string;
+  status: string;
+  amount: string;
 }
 
-const UpdateExpenseForm: React.FC<UpdateExpenseFormProps> = ({
+const UpdateLoanForm: React.FC<UpdateLoanFormProps> = ({
   id,
-  name,
-  price,
-  category,
-  description,
+  lender,
+  borrowDate,
+  due,
+  status,
+  amount,
 }) => {
   //   const userId = useSelector((state: any) => state.authStore.userId);
-  const [updateExpense] = useUpdateExpenseMutation();
+  const [updateLoan] = useUpdateLoanMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: name,
-      price: price,
-      category: category,
-      description: description,
+      lender: lender,
+      borrowDate: borrowDate,
+      due: due,
+      status: status,
+      amount: amount,
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
-      updateExpense({
-        name: values.name,
-        price: values.price,
-        category: values.category,
-        description: values.description,
+      updateLoan({
+        lender: values.lender,
+        borrowDate: values.borrowDate,
+        due: values.due,
+        status: values.status,
+        amount: values.amount,
         id: id,
       });
     }
@@ -83,12 +84,12 @@ const UpdateExpenseForm: React.FC<UpdateExpenseFormProps> = ({
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <FormField
                 control={form.control}
-                name="name"
+                name="lender"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>Lender</FormLabel>
                     <FormControl>
-                      <Input placeholder="Crunchyroll" {...field} />
+                      <Input placeholder="Shikamaru Nara" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -97,12 +98,12 @@ const UpdateExpenseForm: React.FC<UpdateExpenseFormProps> = ({
 
               <FormField
                 control={form.control}
-                name="price"
+                name="borrowDate"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Price</FormLabel>
+                    <FormLabel>Borrow Date</FormLabel>
                     <FormControl>
-                      <Input placeholder="49" {...field} />
+                      <Input type="date" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -111,12 +112,12 @@ const UpdateExpenseForm: React.FC<UpdateExpenseFormProps> = ({
 
               <FormField
                 control={form.control}
-                name="category"
+                name="due"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Category</FormLabel>
+                    <FormLabel>Due Date</FormLabel>
                     <FormControl>
-                      <Input placeholder="Entertainment" {...field} />
+                      <Input type="date" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -125,12 +126,26 @@ const UpdateExpenseForm: React.FC<UpdateExpenseFormProps> = ({
 
               <FormField
                 control={form.control}
-                name="description"
+                name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel>Status</FormLabel>
                     <FormControl>
-                      <Input placeholder="Watch anime online" {...field} />
+                      <Input placeholder="Unpaid" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="amount"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Amount</FormLabel>
+                    <FormControl>
+                      <Input placeholder="5600" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -145,4 +160,4 @@ const UpdateExpenseForm: React.FC<UpdateExpenseFormProps> = ({
   );
 };
 
-export default UpdateExpenseForm;
+export default UpdateLoanForm;

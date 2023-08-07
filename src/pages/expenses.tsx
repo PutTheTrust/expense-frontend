@@ -84,7 +84,9 @@ const Expenses = () => {
             </thead>
             <tbody className="divide-y divide-gray-200">
               {isLoading ? (
-                <td>Loading...</td>
+                <tr>
+                  <td>Loading...</td>
+                </tr>
               ) : (
                 data.data.expenses.map((expense: any) => (
                   <tr key={expense._id}>

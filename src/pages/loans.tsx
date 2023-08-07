@@ -5,7 +5,7 @@ import Sidebar from "../components/sidebar";
 import LoanForm from "../components/loan-form";
 import DeleteButton from "../components/delete-button";
 import { useSelector } from "react-redux";
-import UpdateExpenseForm from "../components/update-expense-form";
+import UpdateLoanForm from "../components/update-loan-form";
 
 const Loans = () => {
   const userId = useSelector((state: any) => state.authStore.userId);
@@ -40,9 +40,9 @@ const Loans = () => {
                 <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
                   Amount
                 </th>
-                {/* <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
                   Edit
-                </th> */}
+                </th>
                 <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
                   Delete
                 </th>
@@ -50,7 +50,9 @@ const Loans = () => {
             </thead>
             <tbody className="divide-y divide-gray-200">
               {isLoading ? (
-                <td>Loading...</td>
+                <tr>
+                  <td>Loading...</td>
+                </tr>
               ) : (
                 data.data.loans.map((loan: any) => (
                   <tr key={loan._id}>
@@ -69,9 +71,16 @@ const Loans = () => {
                     <td className="px-6 py-4 text-sm whitespace-nowrap">
                       {loan.amount}
                     </td>
-                    {/* <td className="px-6 py-4 text-sm whitespace-nowrap">
-                      <UpdateExpenseForm id={""} name={""} price={""} category={""} description={""} />
-                    </td> */}
+                    <td className="px-6 py-4 text-sm whitespace-nowrap">
+                      <UpdateLoanForm
+                        id={loan._id}
+                        lender={loan.lender}
+                        borrowDate={loan.borrowDate}
+                        due={loan.due}
+                        status={loan.status}
+                        amount={loan.amount}
+                      />
+                    </td>
                     <td className="px-6 py-4 text-sm whitespace-nowrap">
                       <DeleteButton id={loan._id} />
                     </td>

@@ -31,6 +31,18 @@ const loansApi = createApi({
       invalidatesTags: ["Loans"],
     }),
 
+    updateLoan: builder.mutation({
+      query: (data) => ({
+        url: "loans",
+        method: "PATCH",
+        body: data,
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }),
+      invalidatesTags: ["Loans"],
+    }),
+
     deleteLoan: builder.mutation({
       query: (loanId: any) => ({
         url: "loans",
@@ -49,6 +61,7 @@ export const {
   useGetLoansQuery,
   useGetLoansByPersonQuery,
   useDeleteLoanMutation,
+  useUpdateLoanMutation,
   useCreateLoanMutation,
 } = loansApi;
 export default loansApi;

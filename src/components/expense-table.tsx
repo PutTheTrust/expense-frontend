@@ -32,9 +32,11 @@ const ExpenseTable = () => {
         </thead>
         <tbody className="divide-y divide-gray-200">
           {isLoading ? (
-            <td>Loading...</td>
+            <tr>
+              <td>Loading...</td>
+            </tr>
           ) : (
-            data.data.expenses.map((expense: any) => (
+            data.data.expenses.slice(0, 3).map((expense: any) => (
               <tr key={expense._id}>
                 <td className="px-6 py-4 text-sm whitespace-nowrap">
                   {expense.name}

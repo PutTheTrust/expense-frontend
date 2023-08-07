@@ -5,6 +5,7 @@ import Sidebar from "../components/sidebar";
 import LoanForm from "../components/loan-form";
 import DeleteButton from "../components/delete-button";
 import { useSelector } from "react-redux";
+import UpdateExpenseForm from "../components/update-expense-form";
 
 const Loans = () => {
   const userId = useSelector((state: any) => state.authStore.userId);
@@ -69,7 +70,7 @@ const Loans = () => {
                       {loan.amount}
                     </td>
                     {/* <td className="px-6 py-4 text-sm whitespace-nowrap">
-                      <LoanForm text="Edit Loan" data={{id: loan._id, lender: loan.lender, borrow: loan.borrowDate, loan.due, loan.status, loan.amoun,}} />
+                      <UpdateExpenseForm id={""} name={""} price={""} category={""} description={""} />
                     </td> */}
                     <td className="px-6 py-4 text-sm whitespace-nowrap">
                       <DeleteButton id={loan._id} />

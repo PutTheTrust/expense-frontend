@@ -18,7 +18,12 @@ const Home = () => {
         <div className="flex items-center justify-between mb-4 md:pt-10">
           <h1 className=" text-white text-2xl tracking-widest ">DASHBOARD</h1>
 
-          <h2 className="text-white text-xl">Hi, {name}</h2>
+          <div className="flex items-center gap-2">
+            <h2 className="text-white text-xl">Hi, {name}</h2>
+            <p className="bg-rose-500 h-10 w-10 rounded-full flex justify-center items-center text-lg font-bold">
+              {name.substring(0, 1)}
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">

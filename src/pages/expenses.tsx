@@ -8,6 +8,7 @@ import { useGetExpensesQuery } from "../apis/expense-api";
 import ExpenseForm from "../components/expense-form";
 import { useSelector } from "react-redux";
 import DeleteButton from "../components/delete-button";
+import UpdateExpenseForm from "../components/update-expense-form";
 
 interface ExpenseProps {
   _id: string;
@@ -73,9 +74,9 @@ const Expenses = () => {
                 <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
                   Description
                 </th>
-                {/* <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
                   Edit
-                </th> */}
+                </th>
                 <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
                   Delete
                 </th>
@@ -105,9 +106,15 @@ const Expenses = () => {
                     <td className="px-6 py-4 text-sm whitespace-nowrap">
                       {expense.description}
                     </td>
-                    {/* <td className="px-6 py-4 text-sm whitespace-nowrap">
-                      <expenseForm text="Edit expense" data={{id: expense._id, lender: expense.lender, borrow: expense.borrowDate, expense.due, expense.status, expense.amoun,}} />
-                    </td> */}
+                    <td className="px-6 py-4 text-sm whitespace-nowrap">
+                      <UpdateExpenseForm
+                        id={expense._id}
+                        name={expense.name}
+                        price={expense.price}
+                        category={expense.category}
+                        description={expense.description}
+                      />
+                    </td>
                     <td className="px-6 py-4 text-sm whitespace-nowrap">
                       <DeleteButton id={expense._id} />
                     </td>

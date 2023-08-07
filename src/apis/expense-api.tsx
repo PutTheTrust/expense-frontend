@@ -31,6 +31,18 @@ const expensesApi = createApi({
       invalidatesTags: ["Expenses"],
     }),
 
+    updateExpense: builder.mutation({
+      query: (data) => ({
+        url: "expenses",
+        method: "PATCH",
+        body: data,
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }),
+      invalidatesTags: ["Expenses"],
+    }),
+
     deleteExpense: builder.mutation({
       query: (expenseId: any) => ({
         url: "expenses",
@@ -48,6 +60,7 @@ const expensesApi = createApi({
 export const {
   useGetExpensesQuery,
   useGetExpensesByCatQuery,
+  useUpdateExpenseMutation,
   useCreateExpenseMutation,
   useDeleteExpenseMutation,
 } = expensesApi;

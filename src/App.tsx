@@ -2,14 +2,7 @@ import "./App.css";
 import Expenses from "./pages/expenses";
 import Home from "./pages/home";
 
-import {
-  BrowserRouter,
-  createBrowserRouter,
-  Route,
-  RouterProvider,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Loans from "./pages/loans";
 import Login from "./pages/login";
 import Register from "./pages/register";
@@ -35,39 +28,6 @@ function App() {
     }
   }, []);
 
-  // if (token) {
-  //   const user = jwtDecode(token);
-  //   dispatch(saveUser(user));
-  // } else {
-  //   navigate("/login");
-  // }
-
-  // const router = createBrowserRouter([
-  //   {
-  //     path: "/",
-  //     element: <Home />,
-  //   },
-  //   {
-  //     path: "/expenses",
-  //     element: <Expenses />,
-  //   },
-  //   {
-  //     path: "/loans",
-  //     element: <Loans />,
-  //   },
-  //   {
-  //     path: "/login",
-  //     element: <Login />,
-  //   },
-  //   {
-  //     path: "/register",
-  //     element: <Register />,
-  //   },
-  // ]);
-  // <RouterProvider router={router} />
-  // if (!isLoggedIn) {
-  //   navigate("/login");
-  // }
   return (
     <>
       {/* <BrowserRouter> */}

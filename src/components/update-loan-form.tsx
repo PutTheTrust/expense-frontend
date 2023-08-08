@@ -21,6 +21,7 @@ import {
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { useUpdateLoanMutation } from "../apis/loan-api";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   lender: z.string().min(3).max(50),
@@ -59,6 +60,9 @@ const UpdateLoanForm: React.FC<UpdateLoanFormProps> = ({
       amount: amount,
     },
   });
+  function timeout(delay: number) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
@@ -69,7 +73,14 @@ const UpdateLoanForm: React.FC<UpdateLoanFormProps> = ({
         status: values.status,
         amount: values.amount,
         id: id,
-      });
+      })
+        .unwrap()
+        .then(async () => {
+          toast.success("Loan updated successfully");
+          await timeout(500);
+          window.location.reload();
+        })
+        .catch((error) => toast.error(error.message));
     }
   };
   return (

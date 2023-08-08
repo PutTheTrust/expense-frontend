@@ -21,6 +21,7 @@ import {
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { useUpdateExpenseMutation } from "../apis/expense-api";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   name: z.string().min(3).max(50),
@@ -54,6 +55,9 @@ const UpdateExpenseForm: React.FC<UpdateExpenseFormProps> = ({
       description: description,
     },
   });
+  function timeout(delay: number) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
@@ -63,7 +67,14 @@ const UpdateExpenseForm: React.FC<UpdateExpenseFormProps> = ({
         category: values.category,
         description: values.description,
         id: id,
-      });
+      })
+        .unwrap()
+        .then(async () => {
+          toast.success("Expense updates successfully");
+          await timeout(500);
+          window.location.reload();
+        })
+        .catch((error) => toast.error(error.message));
     }
   };
   return (

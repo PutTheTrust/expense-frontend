@@ -22,6 +22,7 @@ import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { useCreateLoanMutation } from "../apis/loan-api";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   lender: z.string().min(3).max(50),
@@ -53,6 +54,9 @@ const LoanForm: React.FC<LoanProps> = ({ text, data }) => {
       amount: "",
     },
   });
+  function timeout(delay: number) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
@@ -63,7 +67,14 @@ const LoanForm: React.FC<LoanProps> = ({ text, data }) => {
         status: values.status,
         amount: values.amount,
         userId: userId,
-      });
+      })
+        .unwrap()
+        .then(async () => {
+          toast.success("Loan created successfully");
+          await timeout(500);
+          window.location.reload();
+        })
+        .catch((error) => toast.error(error.message));
     }
   };
   return (

@@ -6,6 +6,7 @@ import LoanChart from "../components/loan-chart";
 import BalanceCard from "../components/balance-card";
 import ExpenseTable from "../components/expense-table";
 import { useSelector } from "react-redux";
+import Test from "../components/test";
 
 const Home = () => {
   const name = useSelector((state: any) => state.authStore.name);
@@ -16,7 +17,6 @@ const Home = () => {
       <div className="px-10 md:ml-[246px] h-screen">
         <div className="flex items-center justify-between mb-4 md:pt-10">
           <h1 className=" text-white text-2xl tracking-widest ">DASHBOARD</h1>
-
           <div className="flex items-center gap-2">
             <h2 className="text-white text-xl">Hi, {name}</h2>
             <p className="bg-rose-500 h-10 w-10 rounded-full flex justify-center items-center text-lg font-bold">
@@ -32,8 +32,9 @@ const Home = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-4 mt-4">
-          <ExpenseChart />
-          <LoanChart />
+          {/* <ExpenseChart />
+          <LoanChart /> */}
+          <Test />
         </div>
 
         <ExpenseTable />

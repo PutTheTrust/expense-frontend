@@ -22,6 +22,7 @@ import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { useCreateExpenseMutation } from "../apis/expense-api";
 import { useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 
 const formSchema = z.object({
   name: z.string().min(3).max(50),
@@ -43,6 +44,10 @@ const ExpenseForm = () => {
     },
   });
 
+  function timeout(delay: number) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
       createExpense({
@@ -51,7 +56,15 @@ const ExpenseForm = () => {
         category: values.category,
         description: values.description,
         userId: userId,
-      });
+      })
+        .unwrap()
+        .then(async () => {
+          toast.success("Expense created successfully");
+          await timeout(500);
+          window.location.reload();
+        })
+        .catch((error) => toast.error(error.message));
+      // console.log(response);
     }
   };
   return (

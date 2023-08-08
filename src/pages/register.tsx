@@ -17,6 +17,7 @@ import { useRegisterUserMutation } from "../apis/auth-api";
 import jwt from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { saveUser } from "../store/slice/auth-slice";
+import { Link } from "react-router-dom";
 
 const formSchema = z.object({
   email: z.string().min(3).max(50),
@@ -52,7 +53,9 @@ const Register = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">
-      <h1 className="text-3xl font-semibold tracking-widest">REGISTER</h1>
+      <h1 className="text-3xl font-semibold tracking-widest text-white mb-4">
+        REGISTER
+      </h1>
       <div className="w-[80%] max-w-[500px] bg-dark p-8 rounded-lg">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -102,6 +105,9 @@ const Register = () => {
             </Button>
           </form>
         </Form>
+        <Link className="text-blue-400 pt-4 text-xs" to="/login">
+          Already have an account? Login
+        </Link>
       </div>
     </div>
   );

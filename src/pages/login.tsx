@@ -1,7 +1,7 @@
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import jwtDecode from "jwt-decode";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   Form,
@@ -54,7 +54,9 @@ const Login = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">
-      <h1 className="text-3xl font-semibold tracking-widest">Login</h1>
+      <h1 className="text-3xl font-semibold tracking-widest text-white mb-4">
+        Login
+      </h1>
       <div className="w-[80%] max-w-[500px] bg-dark p-8 rounded-lg">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -90,6 +92,10 @@ const Login = () => {
             </Button>
           </form>
         </Form>
+
+        <Link className="text-blue-400 pt-4 text-xs" to="/register">
+          No Account? Register
+        </Link>
       </div>
     </div>
   );

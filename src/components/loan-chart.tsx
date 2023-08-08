@@ -8,33 +8,22 @@ const LoanChart = () => {
 
   return (
     <div className="flex flex-col items-center bg-[#272D35] text-white text-ellipsis rounded-[10px]">
-      <h1 className="text-2xl mb-2">Expenses by Lender</h1>
+      <h1 className="text-2xl mb-2">Loans</h1>
       <div className="w-[75%] md:w-1/2">
         {isLoading ? (
           <p>Loading</p>
         ) : (
           <VictoryPie
-            data={data.categories}
+            data={data.categories.slice(0, 3)}
             innerRadius={100}
             animate={{
               duration: 2000,
             }}
             colorScale={"green"}
-            // width={300}
             containerComponent={<VictoryContainer responsive={true} />}
+            style={{ labels: { fill: "white" } }}
           />
         )}
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-2 text-white w-full px-5">
-        {!isLoading &&
-          (data.categories.length === 0 ? (
-            <p>NO categories yet!</p>
-          ) : (
-            data.categories.map((_cat: any, idx: number) => (
-              <div key={idx} className="flex gap-5"></div>
-            ))
-          ))}
       </div>
     </div>
   );

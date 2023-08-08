@@ -6,7 +6,6 @@ import LoanChart from "../components/loan-chart";
 import BalanceCard from "../components/balance-card";
 import ExpenseTable from "../components/expense-table";
 import { useSelector } from "react-redux";
-import Test from "../components/test";
 
 const Home = () => {
   const name = useSelector((state: any) => state.authStore.name);
@@ -32,9 +31,8 @@ const Home = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-4 mt-4">
-          {/* <ExpenseChart />
-          <LoanChart /> */}
-          <Test />
+          <ExpenseChart />
+          <LoanChart />
         </div>
 
         <ExpenseTable />

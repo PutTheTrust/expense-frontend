@@ -5,7 +5,9 @@ import BalanceCard from "./balance-card";
 const LoanCard = () => {
   const userId = useSelector((state: any) => state.authStore.userId);
   const { data, isLoading } = useGetTotalLoansQuery(userId);
-
+  if (!isLoading) {
+    console.log(data);
+  }
   return (
     <>
       {isLoading ? (

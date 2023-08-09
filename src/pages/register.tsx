@@ -30,9 +30,9 @@ const Register = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "asta@clover.com",
-      name: "Asta",
-      password: "Password",
+      email: "",
+      name: "",
+      password: "",
     },
   });
   const [registerUser] = useRegisterUserMutation();

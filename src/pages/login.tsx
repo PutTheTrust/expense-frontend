@@ -18,6 +18,7 @@ import { Button } from "../components/ui/button";
 import { useLoginUserMutation } from "../apis/auth-api";
 import { saveUser } from "../store/slice/auth-slice";
 import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   email: z.string().min(3).max(50),
@@ -38,17 +39,30 @@ const Login = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
-      // Error handling
-      const response: any = await loginUser({
+      loginUser({
         email: values.email,
         password: values.password,
-      });
-      console.log(response);
-      const { token } = response.data;
-      localStorage.setItem("token", token);
-      const user = jwtDecode(token);
-      dispatch(saveUser(user));
-      navigate("/");
+      })
+        .unwrap()
+        .then((response) => {
+          // console.log(response.token);
+          const { token } = response;
+          localStorage.setItem("token", token);
+          const user = jwtDecode(token);
+          dispatch(saveUser(user));
+          navigate("/");
+          toast.success("success");
+        })
+        .catch((error) => {
+          toast.error(error.data.message);
+        });
+
+      // console.log(response);
+      // const { token } = response.data;
+      // localStorage.setItem("token", token);
+      // const user = jwtDecode(token);
+      // dispatch(saveUser(user));
+      // navigate("/");
     }
   };
 

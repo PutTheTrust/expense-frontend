@@ -11,7 +11,9 @@ const LoanCard = () => {
       {isLoading ? (
         <p>Loading...</p>
       ) : data.results === 0 ? (
-        <p>No Loans yet.</p>
+        <div className="bg-[#272D35] text-white h-32 rounded-[10px] p-4">
+          <p>No Loans yet.</p>
+        </div>
       ) : (
         <BalanceCard title="Total Loans" total={data.total[0].totalAmount} />
       )}

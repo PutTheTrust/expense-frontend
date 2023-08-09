@@ -17,7 +17,8 @@ import { useRegisterUserMutation } from "../apis/auth-api";
 import jwt from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { saveUser } from "../store/slice/auth-slice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   email: z.string().min(3).max(50),
@@ -36,18 +37,33 @@ const Register = () => {
   });
   const [registerUser] = useRegisterUserMutation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
       // Error handling
-      const response: any = await registerUser({
+      registerUser({
         email: values.email,
         name: values.name,
         password: values.password,
-      });
-      localStorage.setItem("token", response.data.token);
-      const user = jwt(response.data.token);
-      dispatch(saveUser(user));
+      })
+        .unwrap()
+        .then((response: any) => {
+          // console.log(response);
+          if (response.status === "fail") {
+            toast.error(response.message);
+            return;
+          }
+          const { token } = response;
+          localStorage.setItem("token", token);
+          const user = jwt(token);
+          dispatch(saveUser(user));
+          toast.success("Registration successfully");
+          navigate("/");
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
     }
   };
 

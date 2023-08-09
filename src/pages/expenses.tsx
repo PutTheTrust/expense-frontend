@@ -6,8 +6,8 @@ import Sidebar from "../components/sidebar";
 import { useGetExpensesQuery } from "../apis/expense-api";
 import ExpenseForm from "../components/expense-form";
 import { useSelector } from "react-redux";
-import DeleteButton from "../components/delete-button";
 import UpdateExpenseForm from "../components/update-expense-form";
+import DeleteExpenseButton from "../components/delete-expense-button";
 
 const Expenses = () => {
   const userId = useSelector((state: any) => state.authStore.userId);
@@ -89,7 +89,7 @@ const Expenses = () => {
                         />
                       </td>
                       <td className="px-6 py-4 text-sm whitespace-nowrap">
-                        <DeleteButton id={expense._id} />
+                        <DeleteExpenseButton id={expense._id} />
                       </td>
                     </tr>
                   ))

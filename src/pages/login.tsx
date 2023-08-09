@@ -30,8 +30,8 @@ const Login = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "asta@clover.com",
+      password: "Password",
     },
   });
   const [loginUser] = useLoginUserMutation();

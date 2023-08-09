@@ -22,6 +22,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { useUpdateLoanMutation } from "../apis/loan-api";
 import toast from "react-hot-toast";
+import { Edit } from "lucide-react";
 
 const formSchema = z.object({
   lender: z.string().min(3).max(50),
@@ -85,8 +86,8 @@ const UpdateLoanForm: React.FC<UpdateLoanFormProps> = ({
   };
   return (
     <Dialog>
-      <DialogTrigger className="bg-custom-green rounded-lg h-[44px] px-[5%] text-white">
-        Update
+      <DialogTrigger className="bg-custom-green rounded-lg h-[44px] px-5 text-white">
+        <Edit />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

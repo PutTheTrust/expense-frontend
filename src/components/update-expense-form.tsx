@@ -22,6 +22,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { useUpdateExpenseMutation } from "../apis/expense-api";
 import toast from "react-hot-toast";
+import { Edit } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(3).max(50),
@@ -79,8 +80,8 @@ const UpdateExpenseForm: React.FC<UpdateExpenseFormProps> = ({
   };
   return (
     <Dialog>
-      <DialogTrigger className="bg-custom-green rounded-lg h-[44px] px-[5%] text-white">
-        Update
+      <DialogTrigger className="bg-custom-green rounded-lg h-[44px] px-5 text-white">
+        <Edit />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

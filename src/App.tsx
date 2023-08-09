@@ -9,10 +9,9 @@ import Register from "./pages/register";
 import { useDispatch } from "react-redux";
 import { saveUser } from "./store/slice/auth-slice";
 import jwtDecode from "jwt-decode";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 function App() {
-  // const [isLoggedIn, SetLoggedIn] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,9 +20,7 @@ function App() {
     if (token) {
       const user = jwtDecode(token);
       dispatch(saveUser(user));
-      // SetLoggedIn(true);
     } else {
-      // SetLoggedIn(false);
       navigate("/login");
     }
   }, []);

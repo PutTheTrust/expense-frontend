@@ -1,5 +1,4 @@
-import { LayoutDashboard, Calculator, Wallet, LogOut } from "lucide-react";
-const pathname = location.pathname;
+import { LayoutDashboard, Calculator, Wallet } from "lucide-react";
 export const routes = [
   {
     id: 0,

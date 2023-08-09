@@ -43,6 +43,12 @@ const loansApi = createApi({
       invalidatesTags: ["Loans"],
     }),
 
+    getTotalLoans: builder.query({
+      query: (userId) => ({
+        url: `loans/totals/total/${userId}`,
+      }),
+    }),
+
     deleteLoan: builder.mutation({
       query: (loanId: any) => ({
         url: "loans",
@@ -59,6 +65,7 @@ const loansApi = createApi({
 
 export const {
   useGetLoansQuery,
+  useGetTotalLoansQuery,
   useGetLoansByPersonQuery,
   useDeleteLoanMutation,
   useUpdateLoanMutation,

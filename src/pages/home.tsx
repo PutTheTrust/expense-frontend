@@ -7,6 +7,7 @@ import BalanceCard from "../components/balance-card";
 import ExpenseTable from "../components/expense-table";
 import { useSelector } from "react-redux";
 import ExpenseCard from "../components/expense-card";
+import LoanCard from "../components/loan-card";
 
 const Home = () => {
   const name = useSelector((state: any) => state.authStore.name);
@@ -18,7 +19,7 @@ const Home = () => {
         <div className="flex items-center justify-between mb-4 md:pt-10">
           <h1 className=" text-white text-2xl tracking-widest ">DASHBOARD</h1>
           <div className="flex items-center gap-2">
-            <h2 className="text-white text-xl">Hi, {name}</h2>
+            <h2 className="text-white text-xl hidden md:block">Hi, {name}</h2>
             <p className="bg-rose-500 h-10 w-10 rounded-full flex justify-center items-center text-lg font-bold">
               {name.substring(0, 1)}
             </p>
@@ -27,8 +28,8 @@ const Home = () => {
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <ExpenseCard />
-          <BalanceCard />
-          <BalanceCard />
+          <LoanCard />
+          <BalanceCard title="Placeholder" total={55555} />
         </div>
 
         <div className="grid md:grid-cols-2 gap-4 mt-4">
@@ -37,6 +38,8 @@ const Home = () => {
         </div>
 
         <ExpenseTable />
+
+        <div className="h-24 md:hidden" />
       </div>
     </div>
   );

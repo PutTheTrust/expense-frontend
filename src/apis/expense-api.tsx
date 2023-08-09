@@ -43,6 +43,12 @@ const expensesApi = createApi({
       invalidatesTags: ["Expenses"],
     }),
 
+    getTotalExpenses: builder.query({
+      query: (userId) => ({
+        url: `expenses/totals/total/${userId}`,
+      }),
+    }),
+
     deleteExpense: builder.mutation({
       query: (expenseId: any) => ({
         url: "expenses",
@@ -62,6 +68,7 @@ export const {
   useGetExpensesByCatQuery,
   useUpdateExpenseMutation,
   useCreateExpenseMutation,
+  useGetTotalExpensesQuery,
   useDeleteExpenseMutation,
 } = expensesApi;
 export default expensesApi;

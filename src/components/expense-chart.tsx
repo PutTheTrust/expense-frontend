@@ -5,9 +5,6 @@ import { useSelector } from "react-redux";
 const ExpenseChart = () => {
   const userId = useSelector((state: any) => state.authStore.userId);
   const { data, isLoading } = useGetExpensesByCatQuery(userId);
-  if (!isLoading) {
-    console.log(data);
-  }
   return (
     <div className="flex flex-col items-center bg-[#272D35] shadow-lg rounded-[10px]">
       <h1 className="text-2xl mb-2 text-white">Expenses</h1>
@@ -23,7 +20,6 @@ const ExpenseChart = () => {
                 duration: 2000,
               }}
               colorScale={"green"}
-              // width={300}
               containerComponent={<VictoryContainer responsive={true} />}
               style={{ labels: { fill: "white" } }}
             />

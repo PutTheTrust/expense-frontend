@@ -71,6 +71,9 @@ const Login = () => {
       <h1 className="text-3xl font-semibold tracking-widest text-white mb-4">
         Login
       </h1>
+      <h2 className="text-white">
+        Populated values can be used to test application
+      </h2>
       <div className="w-[80%] max-w-[500px] bg-dark p-8 rounded-lg">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">

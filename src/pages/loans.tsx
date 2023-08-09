@@ -3,7 +3,6 @@ import { useGetLoansQuery } from "../apis/loan-api";
 import MobileNav from "../components/mobile-nav";
 import Sidebar from "../components/sidebar";
 import LoanForm from "../components/loan-form";
-import DeleteButton from "../components/delete-loan-button";
 import { useSelector } from "react-redux";
 import UpdateLoanForm from "../components/update-loan-form";
 import DeleteLoanButton from "../components/delete-loan-button";

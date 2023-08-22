@@ -19,6 +19,7 @@ import { useDispatch } from "react-redux";
 import { saveUser } from "../store/slice/auth-slice";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 const formSchema = z.object({
   email: z.string().min(3).max(50),
@@ -38,11 +39,13 @@ const Register = () => {
   const [registerUser] = useRegisterUserMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
       // Error handling
-      registerUser({
+      setLoading(true);
+      await registerUser({
         email: values.email,
         name: values.name,
         password: values.password,
@@ -64,6 +67,7 @@ const Register = () => {
         .catch((error) => {
           toast.error(error.message);
         });
+      setLoading(false);
     }
   };
 
@@ -117,7 +121,17 @@ const Register = () => {
               )}
             />
             <Button variant={"secondary"} type="submit">
-              Register
+              {loading ? (
+                <>
+                  <svg
+                    className="animate-spin h-5 w-5 mr-3 bg-blue-500"
+                    viewBox="0 0 24 24"
+                  ></svg>
+                  Loading...
+                </>
+              ) : (
+                "Login"
+              )}
             </Button>
           </form>
         </Form>

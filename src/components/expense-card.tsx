@@ -15,7 +15,7 @@ const ExpenseCard = () => {
           <p>No Expenses yet.</p>
         </div>
       ) : (
-        <BalanceCard title="Total Loans" total={data.total[0].totalAmount} />
+        <BalanceCard title="Total Expenses" total={data.total[0].totalAmount} />
       )}
     </>
   );

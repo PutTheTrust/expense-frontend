@@ -19,6 +19,7 @@ import { useLoginUserMutation } from "../apis/auth-api";
 import { saveUser } from "../store/slice/auth-slice";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 const formSchema = z.object({
   email: z.string().min(3).max(50),
@@ -27,6 +28,7 @@ const formSchema = z.object({
 
 const Login = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,7 +41,8 @@ const Login = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
-      loginUser({
+      setLoading(true);
+      await loginUser({
         email: values.email,
         password: values.password,
       })
@@ -56,13 +59,7 @@ const Login = () => {
         .catch((error) => {
           toast.error(error.data.message);
         });
-
-      // console.log(response);
-      // const { token } = response.data;
-      // localStorage.setItem("token", token);
-      // const user = jwtDecode(token);
-      // dispatch(saveUser(user));
-      // navigate("/");
+      setLoading(false);
     }
   };
 
@@ -105,7 +102,17 @@ const Login = () => {
               )}
             />
             <Button variant={"secondary"} type="submit">
-              Login
+              {loading ? (
+                <>
+                  <svg
+                    className="animate-spin h-5 w-5 mr-3 bg-blue-500"
+                    viewBox="0 0 24 24"
+                  ></svg>
+                  Loading...
+                </>
+              ) : (
+                "Login"
+              )}
             </Button>
           </form>
         </Form>

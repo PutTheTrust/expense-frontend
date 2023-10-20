@@ -45,6 +45,7 @@ const Register = () => {
     if (values) {
       // Error handling
       setLoading(true);
+      toast.success("Backend services are starting up");
       await registerUser({
         email: values.email,
         name: values.name,

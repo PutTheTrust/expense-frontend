@@ -42,6 +42,7 @@ const Login = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (values) {
       setLoading(true);
+      toast.success("Backend services are starting up");
       await loginUser({
         email: values.email,
         password: values.password,
@@ -50,6 +51,7 @@ const Login = () => {
         .then((response) => {
           // console.log(response.token);
           const { token } = response;
+
           localStorage.setItem("token", token);
           const user = jwtDecode(token);
           dispatch(saveUser(user));

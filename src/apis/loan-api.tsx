@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const loansApi = createApi({
   reducerPath: "loanApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://expense-backend-p6ug.onrender.com/api/v1/",
+    baseUrl: "https://expense-backend-ij5c.onrender.com/api/v1/",
   }),
   tagTypes: ["Loans"],
   endpoints: (builder) => ({

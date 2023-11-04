@@ -103,7 +103,7 @@ const Login = () => {
                 </FormItem>
               )}
             />
-            <Button variant={"secondary"} type="submit">
+            <Button variant={"secondary"} type="submit" disabled={loading}>
               {loading ? (
                 <>
                   <svg

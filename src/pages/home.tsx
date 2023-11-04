@@ -29,7 +29,7 @@ const Home = () => {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <ExpenseCard />
           <LoanCard />
-          <BalanceCard title="Placeholder" total={55555} />
+          <BalanceCard title="Top Expense" total={55555} />
         </div>
 
         <div className="grid md:grid-cols-2 gap-4 mt-4">

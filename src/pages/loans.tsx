@@ -21,7 +21,7 @@ const Loans = () => {
         </div>
         {isLoading ? (
           <p className="flex justify-center items-center text-3xl text-white mt-4">
-            No Loans Yet
+            Loading...
           </p>
         ) : data.length === 0 ? (
           <p className="flex justify-center items-center text-3xl text-white mt-4">

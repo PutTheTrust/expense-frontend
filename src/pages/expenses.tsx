@@ -22,44 +22,40 @@ const Expenses = () => {
           <h1 className="font-bold text-xl md:text-4xl">EXPENSES</h1>
           <ExpenseForm />
         </div>
-        {!isLoading && data.results !== 0 ? (
-          <div className="overflow-x-auto mt-10">
-            <table className="min-w-full divide-y divide-gray-200 text-white">
-              <thead className="">
-                <tr>
-                  <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
-                    ID
-                  </th>
-                  <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
-                    Expense
-                  </th>
-                  <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
-                    Date
-                  </th>
-                  <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
-                    Price
-                  </th>
-                  <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
-                    Category
-                  </th>
-                  <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
-                    Description
-                  </th>
-                  <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
-                    Edit
-                  </th>
-                  <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
-                    Delete
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {isLoading ? (
+        {!isLoading ? (
+          data.results !== 0 ? (
+            <div className="overflow-x-auto mt-10">
+              <table className="min-w-full divide-y divide-gray-200 text-white">
+                <thead className="">
                   <tr>
-                    <td>Loading...</td>
+                    <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                      ID
+                    </th>
+                    <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                      Expense
+                    </th>
+                    <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                      Date
+                    </th>
+                    <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                      Price
+                    </th>
+                    <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                      Category
+                    </th>
+                    <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                      Description
+                    </th>
+                    <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                      Edit
+                    </th>
+                    <th className="px-6 py-3 text-xs font-bold text-left uppercase ">
+                      Delete
+                    </th>
                   </tr>
-                ) : (
-                  data.data.expenses.map((expense: any) => (
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {data.data.expenses.map((expense: any) => (
                     <tr key={expense._id}>
                       <td className="px-6 py-4 text-sm whitespace-nowrap">
                         {expense._id}
@@ -92,14 +88,18 @@ const Expenses = () => {
                         <DeleteExpenseButton id={expense._id} />
                       </td>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="flex justify-center items-center text-3xl text-white mt-4">
+              No Expenses Yet
+            </p>
+          )
         ) : (
           <p className="flex justify-center items-center text-3xl mt-4">
-            No Expenses Yet
+            Loading ...
           </p>
         )}
       </div>

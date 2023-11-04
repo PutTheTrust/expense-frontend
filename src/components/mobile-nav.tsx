@@ -10,7 +10,7 @@ const MobileNav = () => {
     navigate("/login");
   };
   return (
-    <div className="bg-dark rounded-full fixed bottom-8 w-[90%] left-[5%] right-[5%] md:hidden">
+    <div className="bg-dark rounded-full fixed bottom-8 w-[90%] left-[5%] right-[5%] md:hidden z-50">
       <ul className="flex justify-between items-center h-[56px] mx-8">
         {routes.map((route) => (
           <li key={route.label}>

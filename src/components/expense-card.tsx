@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
+
 import BalanceCard from "./balance-card";
 import { useGetTotalExpensesQuery } from "../apis/expense-api";
+import { Calculator } from "lucide-react";
 
 const ExpenseCard = () => {
   const userId = useSelector((state: any) => state.authStore.userId);
@@ -15,7 +17,11 @@ const ExpenseCard = () => {
           <p>No Expenses yet.</p>
         </div>
       ) : (
-        <BalanceCard title="Total Expenses" total={data.total[0].totalAmount} />
+        <BalanceCard
+          title="Total Expenses"
+          text={`R${data.total[0].totalAmount}`}
+          icon={<Calculator />}
+        />
       )}
     </>
   );

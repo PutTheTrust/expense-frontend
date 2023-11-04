@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useGetTotalLoansQuery } from "../apis/loan-api";
 import BalanceCard from "./balance-card";
+import { Wallet } from "lucide-react";
 
 const LoanCard = () => {
   const userId = useSelector((state: any) => state.authStore.userId);
@@ -17,7 +18,11 @@ const LoanCard = () => {
           <p>No Loans yet.</p>
         </div>
       ) : (
-        <BalanceCard title="Total Loans" total={data.total[0].totalAmount} />
+        <BalanceCard
+          title="Total Loans"
+          text={`R${data.total[0].totalAmount}`}
+          icon={<Wallet />}
+        />
       )}
     </>
   );

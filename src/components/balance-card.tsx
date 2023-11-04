@@ -6,7 +6,7 @@ interface BalanceCardProps {
 
 const BalanceCard: React.FC<BalanceCardProps> = ({ title, text, icon }) => {
   return (
-    <div className="bg-[#272D35] text-white max-h-36 md:h-[160px] rounded-[10px] p-4">
+    <div className="bg-[#272D35] text-white h-[177px] max-h-[217px] rounded-[10px] p-4">
       <div className="flex justify-start">
         <div className="bg-black p-3 rounded-full">{icon}</div>
       </div>

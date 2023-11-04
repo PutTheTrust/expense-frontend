@@ -1,15 +1,10 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { routes } from "../constants";
 import { LogOut } from "lucide-react";
+import logout from "../utils/logout";
 
 const Sidebar = () => {
-  const navigate = useNavigate();
-  const logout = () => {
-    localStorage.removeItem("token");
-    window.location.reload();
-    navigate("/login");
-  };
   return (
     <div className="hidden md:block w-[230px] bg-dark fixed h-[95%] left-4 top-6 rounded-3xl">
       <img src={logo} alt="logo" className="mx-auto w-[150px] mt-[87px]" />

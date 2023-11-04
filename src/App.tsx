@@ -26,7 +26,6 @@ function App() {
 
   return (
     <>
-      {/* <BrowserRouter> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/expenses" element={<Expenses />} />
@@ -34,7 +33,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
-      {/* </BrowserRouter> */}
     </>
   );
 }

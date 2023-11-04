@@ -62,9 +62,10 @@ const ExpenseTable = () => {
           </table>
         </div>
       ) : (
-        <p className="flex justify-center items-center text-3xl text-white mt-4">
-          No Loans Yet
-        </p>
+        // <p className="flex justify-center items-center text-3xl text-white mt-4">
+        //   No Expenses Yet
+        // </p>
+        <></>
       )}
     </>
   );

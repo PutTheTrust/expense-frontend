@@ -3,43 +3,50 @@ import { useSelector } from "react-redux";
 import { useGetExpensesQuery } from "../apis/expense-api";
 import NoItems from "./no-items";
 import BalanceCard from "./balance-card";
-import { CopySlash } from "lucide-react";
+import { CopySlash, WalletCards } from "lucide-react";
+import Loader from "./loader";
 
 const TopExpenseCard = () => {
   const userId = useSelector((state: any) => state.authStore.userId);
   const { data, isLoading } = useGetExpensesQuery(userId);
 
-  const getHighestExpense = () => {
+  const getHighestExpense = (): number => {
     if (!isLoading) {
-      let max = 0;
-      let maxIdx = 0;
-      data.data.expenses.map((exp: any, index: number) => {
-        if (exp.price > max) {
-          max = exp.price;
-          // console.log(max);
-        }
-
-        maxIdx = index;
-      });
-
-      return maxIdx;
+      // console.log(await data.length);
+      if (data) {
+        var maxIdx = 0;
+        let max = 0;
+        data.data.expenses.map((exp: any, index: number) => {
+          if (exp.price > max) {
+            max = exp.price;
+            // console.log("MAX _>", max);
+            maxIdx = index;
+          }
+        });
+        return maxIdx;
+      }
     }
+    return -1;
   };
-
-  // let test = getHighestExpense();
-  // console.log(test);
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <Loader />
       ) : data.results === 0 ? (
         <NoItems text="Add Expenses" />
       ) : (
-        <BalanceCard
-          title="Top Expense"
-          text={`${data.data.expenses[getHighestExpense()!].category}`}
-          icon={<CopySlash />}
-        />
+        <>
+          <BalanceCard
+            title="Top Expense"
+            text={`${
+              getHighestExpense() !== -1
+                ? data.data.expenses[getHighestExpense()!].category
+                : "Add an Expense"
+            }`}
+            icon={<WalletCards />}
+          />
+          {console.log(getHighestExpense())}
+        </>
         // <></>
       )}
     </>

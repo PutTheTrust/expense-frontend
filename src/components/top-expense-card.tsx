@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useGetExpensesQuery } from "../apis/expense-api";
 import NoItems from "./no-items";
 import BalanceCard from "./balance-card";
-import { CopySlash, WalletCards } from "lucide-react";
+import { WalletCards } from "lucide-react";
 import Loader from "./loader";
 
 const TopExpenseCard = () => {

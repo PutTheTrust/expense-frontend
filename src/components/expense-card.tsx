@@ -4,6 +4,7 @@ import BalanceCard from "./balance-card";
 import { useGetTotalExpensesQuery } from "../apis/expense-api";
 import { Calculator } from "lucide-react";
 import NoItems from "./no-items";
+import Loader from "./loader";
 
 const ExpenseCard = () => {
   const userId = useSelector((state: any) => state.authStore.userId);
@@ -12,7 +13,7 @@ const ExpenseCard = () => {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <Loader />
       ) : data.results === 0 ? (
         <NoItems text="No Expenses yet." />
       ) : (

@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import ExpenseCard from "../components/expense-card";
 import LoanCard from "../components/loan-card";
 import { MonitorCheck } from "lucide-react";
+import TopExpenseCard from "../components/top-expense-card";
 
 const Home = () => {
   const name = useSelector((state: any) => state.authStore.name);
@@ -30,16 +31,8 @@ const Home = () => {
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           <ExpenseCard />
           <LoanCard />
-          <BalanceCard
-            title="Top Expense"
-            text={"Groceries"}
-            icon={<MonitorCheck />}
-          />
-          <BalanceCard
-            title="Top Expense"
-            text={"Groceries"}
-            icon={<MonitorCheck />}
-          />
+          <TopExpenseCard />
+          <BalanceCard title="TEMP" text={"TEMP"} icon={<MonitorCheck />} />
         </div>
 
         <div className="grid md:grid-cols-2 gap-4 mt-4">

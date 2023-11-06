@@ -6,7 +6,7 @@ const ExpenseChart = () => {
   const userId = useSelector((state: any) => state.authStore.userId);
   const { data, isLoading } = useGetExpensesByCatQuery(userId);
   return (
-    <div className="flex flex-col items-center bg-[#272D35] shadow-lg rounded-[10px]">
+    <div className="flex flex-col items-center bg-[#272D35] shadow-lg rounded-[10px] min-h-[200px]">
       <h1 className="text-2xl mb-2 text-white">Expenses</h1>
       {!isLoading && data.results !== 0 ? (
         <div className="w-[78%] md:w-1/2">

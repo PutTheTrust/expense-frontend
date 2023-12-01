@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const expensesApi = createApi({
   reducerPath: "expenseApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://expense-backend-ij5c.onrender.com/api/v1/",
+    baseUrl: "https://expense-backend.fly.dev/api/v1/",
   }),
   tagTypes: ["Expenses"],
   endpoints: (builder) => ({
